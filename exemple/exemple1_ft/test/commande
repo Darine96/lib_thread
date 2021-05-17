@@ -1,0 +1,9 @@
+
+gcc -Wall -O3 -D_REENTRANT -c hello.c -I ../include -L ../lib  -lfthread -lpthread
+
+
+
+gcc -Wall -O3 -D_REENTRANT hello.o -o hello -I ../include -L ../lib  -lfthread -lpthread
+
+
+./hello
