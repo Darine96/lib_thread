@@ -140,7 +140,7 @@ impl App {
 
         // Rotate 2 radians per second.
         if let Ok((matrix)) = self.color_receiver.try_recv(){
-        	println!("hi");
+        	//println!("hi");
             self.matrix_etat = matrix;
            // println!(" render in main {:?}", self.matrix_etat);
         }
@@ -186,7 +186,7 @@ impl Thread for window_app{
 
            self.matrix_after_update.lock().unwrap().clear();
            *(self.matrix_after_update.lock().unwrap()) = self.matrix_before_update.lock().unwrap().clone();
-            println!("window matrix_before_update{:?}\n", self.matrix_before_update.lock().unwrap());
+            //println!("window matrix_before_update{:?}\n", self.matrix_before_update.lock().unwrap());
           // println!("window matrix_after_update{:?}\n", self.matrix_after_update.lock().unwrap());
            self.thread_emit(self.signal_1.clone());//pour reveiller les cellules
           //send les états au window
@@ -296,8 +296,8 @@ fn main(){
     for i in 0..20{
     	for j in 0..20{
     		let cell = ProiePredateur::new(Arc::clone(&arc_sche), Arc::clone(&signal), Arc::clone(&signal_1), matrix_1.clone(), matrix_2.clone(),  i as i32, j as i32);
-    		let index = cell.proie_pred;
-        if(index == 1 || index == 2){
+    		let index = cell.is_alive;
+        if(index){
     		let cell_2 = cell.thread_run();
       }
     		 //cell.thread_emis_etat(cell.signal_1.clone(), i as usize, j as usize, cell.alive);

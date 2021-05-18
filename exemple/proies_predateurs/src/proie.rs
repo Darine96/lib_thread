@@ -67,7 +67,7 @@ impl Thread for ProiePredateur{
    fn thread_execute(&mut self){
 
     //generer S1
-    println!("\nhello from Cell\n");
+   //println!("\nhello from Cell\n");
 
     // caculer les voisins
     self.get_neighbours(20i32, 20i32);
@@ -113,11 +113,14 @@ impl ProiePredateur {
         let proie_pred: i32 = rng.gen_range(0, 3);
         let mut reprod = 0i32;
         let mut faim = 0i32;
+        let mut is_alive = false;
         if(proie_pred == 1){
             reprod = rng.gen_range(0, 5);
+            is_alive = true;
         }
         else if(proie_pred == 2){
              reprod = rng.gen_range(0, 7);
+             is_alive = true;
         }
         
         ProiePredateur {
@@ -125,7 +128,7 @@ impl ProiePredateur {
             scheduler: sche,
             signal_1: signal1,
 
-            is_alive: true,
+            is_alive: is_alive,
             proie_pred: proie_pred, // 1: proie, 2: predateur, 0: vide
             reprod: reprod, // Age de reproduction
             faim: faim, // taux de famine pour les predateurs( pour proie nulle)
@@ -188,7 +191,7 @@ impl ProiePredateur {
             west = (x , y - 1);
             north_east = (x - 1, y +1);
             north_west = (x - 1, y -1);
-            south_east = (x + 1, y +1);
+            south_east = (x + 1, y +1); 
             south_west = (x + 1, y - 1);
         }
 
